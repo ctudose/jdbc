@@ -25,12 +25,12 @@ public class CountriesDatabaseTest {
     @Test
     public void testInsertCountries() {
         List<Country> countryList = countryDao.getCountryList();
-        assertNotNull(countryList, () -> "The list of countries should not be null");
+        assertNotNull(countryList, () -> "Task1: The list of countries should not be null");
         assertEquals(expectedCountryList.size(), countryList.size(),
-                () -> "The size of the countries list is wrong");
+                () -> "Task1: The size of the countries list is wrong");
         for (int i = 0; i < expectedCountryList.size(); i++) {
             assertEquals(expectedCountryList.get(i), countryList.get(i),
-                    () -> "Wrong country found in the list");
+                    () -> "Task1: Wrong country found in the list");
         }
     }
 
@@ -38,12 +38,12 @@ public class CountriesDatabaseTest {
     public void testSelectCountriesStartingWithA() {
         List<Country> countryList = countryDao.getCountryListStartWith("A");
         assertNotNull(countryList,
-                () -> "The list of countries with names starting with A should not be null");
+                () -> "Task2: The list of countries with names starting with A should not be null");
         assertEquals(expectedCountryListStartsWithA.size(), countryList.size(),
-                () -> "The size of the countries list with names starting with A is wrong");
+                () -> "Task2: The size of the countries list with names starting with A is wrong");
         for (int i = 0; i < expectedCountryListStartsWithA.size(); i++) {
             assertEquals(expectedCountryListStartsWithA.get(i), countryList.get(i),
-                    () -> "Wrong country found in the list of countries starting with A");
+                    () -> "Task2: Wrong country found in the list of countries starting with A");
         }
     }
 
@@ -51,31 +51,31 @@ public class CountriesDatabaseTest {
     public void testWrongSQL() {
         Throwable throwable =
                 assertThrows(RuntimeException.class, () -> countryDao.executeWrongSQL(),
-                        () -> "The execution of the SQL query should throw RuntimeException");
+                        () -> "Task3: The execution of the SQL query should throw RuntimeException");
         assertTrue(throwable.getMessage().contains("Syntax error in SQL statement \"SELEC[*] * FROM COUNTRY \""),
-                () -> "The SQL query should fail as having a syntax error");
+                () -> "Task3: The SQL query should fail as having a syntax error");
         assertTrue(throwable.getCause() instanceof SQLException,
-                () -> "The cause of the exception should be an instance of SQLException");
+                () -> "Task3: The cause of the exception should be an instance of SQLException");
     }
 
     @Test
-    public void testUpdateCountries() {
+    public void testUpdateCountry() {
         assertEquals(1, countryDao.updateCountry("Russian Federation", "RU"),
-                () -> "There should be exactly one country with the code name \"RU\" having an updated name");
+                () -> "Task4: There should be exactly one country with the code name \"RU\" having an updated name");
         List<Country> countryList = countryDao.getCountry("RU");
         assertNotNull(countryList,
-                () -> "The list of the countries with updated names should not be null");
+                () -> "Task4: The list of the countries with updated names should not be null");
         assertEquals("Russian Federation", countryList.get(0).getName(),
-                () -> "The name of the updated country should be \"Russian Federation\"");
+                () -> "Task4: The name of the updated country should be \"Russian Federation\"");
     }
 
     @Test
     public void testDeleteCountries() {
         assertEquals(1, countryDao.deleteCountryListStartWith("A"),
-                () -> "There should be exactly one deleted country with the name starting with \"A\"");
+                () -> "Task5: There should be exactly one deleted country with the name starting with \"A\"");
         List<Country> countryList = countryDao.getCountry("AU");
         assertEquals(0, countryList.size(),
-                () -> "After deletion, there should be no country with the code name \"AU\"");
+                () -> "Task5: After deletion, there should be no country with the code name \"AU\"");
     }
 
     @AfterEach
