@@ -9,6 +9,7 @@ Insert a list of 12 countries to the COUNTRY table in the H2 database.
 Objectives:
 Create code to properly manage JDBC database connections.
 Employ try/catch/finally blocks to properly dispose of connections after use.
+Create code to modify data in a database.
 Create code to execute an INSERT statement against a database.
 Test name:
 testInsertCountries
@@ -37,6 +38,7 @@ Update a country name
 Objectives:
 Create code to properly manage JDBC database connections.
 Employ try/catch/finally blocks to properly dispose of connections after use.
+Create code to modify data in a database.
 Create code to execute an UPDATE statement against a database. Show how to obtain the number of rows affected.
 Test name:
 testUpdateCountry
@@ -46,6 +48,7 @@ Delete countries having names starting with A.
 Objectives:
 Create code to properly manage JDBC database connections.
 Employ try/catch/finally blocks to properly dispose of connections after use.
+Create code to modify data in a database.
 Create code to execute a DELETE statement against a database. Show how to obtain the number of rows affected.
 Test name:
 testDeleteCountries
